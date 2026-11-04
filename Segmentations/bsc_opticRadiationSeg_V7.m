@@ -41,7 +41,7 @@ for leftright= [1,2]
     
     % Begin Segmentation
     %%
-    % Begin segmentation of meyer's loop===================================
+    % Begin segmentation of Inferior optic radiation (formerly Meyer's loop)===================================
     % GENERATE INITIAL ANATOMICAL ROIS
     wm=bsc_roiFromAtlasNums(atlas,wmLut(leftright), 1);
     [thalamicROI] =bsc_roiFromAtlasNums(atlas,thalLut(leftright),7);
@@ -102,12 +102,12 @@ for leftright= [1,2]
     
     %[~, meyerBool] = wma_SegmentFascicleFromConnectome(wbfg, [{preOccipPlane} {thalamicROI} {postSuperiorThalPlane} {opticStemHalf} {thalAnt} {medThalWMCut} {palWM} {interHemiNot}], {'and','endpoints','not','and','not','not','not','not' }, 'dud');
     meyerBool=thalBool&clipInd&occipSub&latThalInd&extremeAntExclude;
-    classificationOut=bsc_concatClassificationCriteria(classificationOut,strcat(sideLabel{leftright},'meyer'),meyerBool);
-    
-    fprintf('\n Meyers loop segmented')
-    %Meyer segmentation complete============================================
+    classificationOut=bsc_concatClassificationCriteria(classificationOut,strcat(sideLabel{leftright},'Inferior_OR'),meyerBool);
+
+    fprintf('\n Inferior optic radiation segmented')
+    %Inferior optic radiation segmentation complete========================
     %%
-    % begin Baum Segmentation
+    % begin Superior optic radiation segmentation (formerly Baum's loop)
     %GENERATE ANATOMICAL ROIS
     
     %DEFINE INTERSECTION ROIS
@@ -118,12 +118,12 @@ for leftright= [1,2]
     %baumStem   =bsc_intersectROIs(baumWmIntersectB,baumwmIntersectA);
     
     %[~, baumBool] = wma_SegmentFascicleFromConnectome(wbfg, [{preOccipPlane} {thalamicROI}  {interHemiNot} {thalAnt} {baumStem} {opticStemHalf} {medThalWMCut} {palWM} ], {'and','endpoints','not','not','and', 'not','not','not' }, 'dud');
-    classificationOut=bsc_concatClassificationCriteria(classificationOut,strcat(sideLabel{leftright},'baum'),thalBool,~meyerBool,occipSub,latThalInd,antThalExcludeBool);
+    classificationOut=bsc_concatClassificationCriteria(classificationOut,strcat(sideLabel{leftright},'Superior_OR'),thalBool,~meyerBool,occipSub,latThalInd,antThalExcludeBool);
     baumBool=thalBool&~meyerBool&occipSub&latThalInd&antThalExcludeBool;
-    
+
     %classificationOut=bsc_reconcileClassifications(classificationOut,baumClassification);
-    fprintf('\n baums loop segmented')
-       %baum segmentation Complete=========================================
+    fprintf('\n Superior optic radiation segmented')
+       %Superior optic radiation segmentation Complete====================
     %%
     %begin segmentaton of experimental tracts
     if expandSegBool
