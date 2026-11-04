@@ -18,6 +18,7 @@ This repository contains a number of matlab code tools which can be used to perf
 
 ### Laboratory Director
 - Franco Pestilli (franpest@indiana.edu, pestilli@utexas.edu)
+- Gabriele Amorosino (gabriele.amorosino@utexas.edu)
 
 ### Funding
 
